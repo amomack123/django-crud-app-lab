@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/restaurants/index.css' %}"/>
+{% endblock %} 
+{% block content %}
+  
+<section class="card-container">
+      {% for restaurant in restaurants %}
+        <div class="card">
+          <a href="{% url 'restaurant-detail' restaurant.id %}">
+            <div class="card-content">
+              <h2 class="card-title">{{ restaurant.name }}</h2>
+              <p>{{ restaurant.location }}</p>
+              <p><small>{{ restaurant.description }}</small></p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+</section>
+    
+{% endblock %}
+  
