@@ -15,9 +15,21 @@
     <header>
       <nav>
         <ul>
-          <li><a href="{% url 'restaurants' %}">All Restaurants</a></li>
-          <li><a href="{% url 'restaurant-create' %}">Add a Restaurant</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'restaurants' %}">All Restaurants</a></li>
+            <li><a href="{% url 'restaurant-create' %}">Add a Restaurant</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li>
+              <form method="post" class="logout" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+              </form>
+            </li>
+          {% else %}
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'home' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>
