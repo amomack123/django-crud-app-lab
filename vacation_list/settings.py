@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'restaurant_list.urls'
+ROOT_URLCONF = 'vacation_list.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'restaurant_list.wsgi.application'
+WSGI_APPLICATION = 'vacation_list.wsgi.application'
 
 
 # Database
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'restaurant_list.wsgi.application'
 
 DATABASES = {
    'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'restaurantlist',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'vacationlist',
+        # 'USER': 'amogh',           # Replace with your PostgreSQL username
+        # 'PASSWORD': 'sol1west',   # Replace with your PostgreSQL password
+        # 'HOST': 'localhost',              # Use 'localhost' if your database is on the same machine
+        # 'PORT': '5432',                   # Default port for PostgreSQL
    }
 }
 
@@ -120,7 +124,7 @@ STATIC_URL = 'static/'
 
 LOGIN_URL = 'home'
 
-LOGIN_REDIRECT_URL = 'restaurants'
+LOGIN_REDIRECT_URL = 'vacations'
 
 LOGOUT_REDIRECT_URL = 'home'
 

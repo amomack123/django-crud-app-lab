@@ -3,14 +3,14 @@
 {% block content %}
 
 <div>
-  <h1>Delete Restaurant?</h1>
+  <h1>Delete Vacation?</h1>
 </div>
 
-<h2>Are you sure you want to delete {{ restaurant.name }}?</h2>
+<h2>Are you sure you want to delete {{ vacation.name }}?</h2>
 
 <form action="" method="post">
   {% csrf_token %}
-  <a href="{% url 'restaurant-detail' restaurant.id %}">Cancel</a>
+  <a href="{% url 'vacation-detail' vacation.id %}">Cancel</a>
   <button type="submit">Yes - Delete!</button>
 </form>
 

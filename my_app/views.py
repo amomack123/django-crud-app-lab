@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Restaurant
+from .models import Vacation
 from .forms import StarForm
+from .forms import VacationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -11,22 +12,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class Home(LoginView):
     template_name = 'home.html'
 
-class RestaurantCreate(LoginRequiredMixin, CreateView):
-    model = Restaurant
+class VacationCreate(LoginRequiredMixin, CreateView):
+    model = Vacation
     fields = '__all__'
-    success_url = '/restaurants/'
+    success_url = '/vacations/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class RestaurantUpdate(LoginRequiredMixin, UpdateView):
-    model = Restaurant
+class VacationUpdate(LoginRequiredMixin, UpdateView):
+    model = Vacation
     fields = '__all__'
 
-class RestaurantDelete(LoginRequiredMixin, DeleteView):
-    model = Restaurant
-    success_url = '/restaurants/'
+class VacationDelete(LoginRequiredMixin, DeleteView):
+    model = Vacation
+    success_url = '/vacations/'
 
 def home(request):
     return render(request, 'base.html')
@@ -38,24 +39,24 @@ def home(request):
     return render(request, 'home.html')
 
 @login_required
-def restaurants(request):
-    restaurants = Restaurant.objects.filter(user=request.user)
-    return render(request, 'restaurants/index.html', {'restaurants': restaurants})
+def vacations(request):
+    vacations = Vacation.objects.filter(user=request.user)
+    return render(request, 'vacations/index.html', {'vacations': vacations})
 
 @login_required
-def restaurant_detail(request, restaurant_id):
-    restaurant = Restaurant.objects.get(id=restaurant_id)
+def vacation_detail(request, vacation_id):
+    vacation = Vacation.objects.get(id=vacation_id)
     star_form = StarForm()
-    return render(request, 'restaurants/detail.html', {'restaurant': restaurant, 'star_form': star_form})
+    return render(request, 'vacations/detail.html', {'vacation': vacation, 'star_form': star_form})
 
 @login_required
-def add_stars(request, restaurant_id):
+def add_stars(request, vacation_id):
     form = StarForm(request.POST)
     if form.is_valid():
         new_star = form.save(commit=False)
-        new_star.restaurant_id = restaurant_id
+        new_star.vacation_id = vacation_id
         new_star.save()
-    return redirect('restaurant-detail', restaurant_id=restaurant_id)
+    return redirect('vacation-detail', vacation_id=vacation_id)
 
 def signup(request):
     error_message = ''
@@ -64,7 +65,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('restaurants')
+            return redirect('vacations')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()

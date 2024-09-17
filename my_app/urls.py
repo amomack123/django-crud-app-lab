@@ -4,12 +4,12 @@ from . import views
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('about/', views.about, name='about'),
-    path('restaurants/', views.restaurants, name='restaurants'),
-    path('restaurants/<int:restaurant_id>/', views.restaurant_detail, name='restaurant-detail'),
-    path('restaurants/create/', views.RestaurantCreate.as_view(), name='restaurant-create'),
-    path('restaurants/<int:pk>/update/', views.RestaurantUpdate.as_view(), name='restaurant-update'),
-    path('restaurants/<int:pk>/delete/', views.RestaurantDelete.as_view(), name='restaurant-delete'),
-    path('restaurants/<int:restaurant_id>/add-stars/', views.add_stars, name='add-stars'),
+    path('vacations/', views.vacations, name='vacations'),
+    path('vacations/<int:vacation_id>/', views.vacation_detail, name='vacation-detail'),
+    path('vacations/create/', views.VacationCreate.as_view(), name='vacation-create'),
+    path('vacations/<int:pk>/update/', views.VacationUpdate.as_view(), name='vacation-update'),
+    path('vacations/<int:pk>/delete/', views.VacationDelete.as_view(), name='vacation-delete'),
+    path('vacations/<int:vacation_id>/add-stars/', views.add_stars, name='add-stars'),
     path('accounts/signup/', views.signup, name='signup'),
 ]
 

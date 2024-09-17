@@ -2,18 +2,18 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-class Restaurant(models.Model):
+class Vacation(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
-    food_type = models.CharField(max_length=100)
+    weather_conditions = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('restaurant-detail', kwargs={'restaurant_id': self.id})
+        return reverse('vacation-detail', kwargs={'vacation_id': self.id})
 
 STAR_CHOICES = (
     ('1', 1),
@@ -28,7 +28,7 @@ class Star(models.Model):
     star = models.CharField('Stars', max_length=1, choices=STAR_CHOICES)
     rating = models.TextField(max_length=250)
 
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    vacation = models.ForeignKey(Vacation, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return f"{self.star} stars"

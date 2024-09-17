@@ -21,7 +21,7 @@ urlpatterns = [
    path('admin/', admin.site.urls),
    path('', include('my_app.urls')), # Mount the app's routes at the root URL
    path('about/', include('my_app.urls')),
-   path('restaurants/', include('my_app.urls')),
+   path('vacations/', include('my_app.urls')),
    path('home/', include('my_app.urls')),
    path('index', include('my_app.urls')),
    path('accounts/', include('django.contrib.auth.urls')),

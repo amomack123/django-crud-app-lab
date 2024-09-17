@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/vacations/index.css' %}"/>
+{% endblock %} 
+{% block content %}
+  
+<section class="card-container">
+      {% for vacation in vacations %}
+        <div class="card">
+          <a href="{% url 'vacation-detail' vacation.id %}">
+              <div class="card-content">
+                <h2 class="card-title">{{ vacation.name }}</h2>
+                <p>{{ vacation.location }}</p>
+                <p><small>{{ vacation.description }}</small></p>
+              </div>
+          </a>
+        </div>
+      {% endfor %}
+</section>
+    
+{% endblock %}
+  
